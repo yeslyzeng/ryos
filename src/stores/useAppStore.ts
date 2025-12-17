@@ -161,7 +161,7 @@ interface AppStoreState extends AppManagerState {
   setRyOSVersion: (version: string, buildNumber: string, buildTime?: string) => void;
 }
 
-const CURRENT_APP_STORE_VERSION = 3; // bump for instanceOrder unification
+const CURRENT_APP_STORE_VERSION = 4; // bump to force wallpaper update
 const initialShaderState = checkShaderPerformance();
 
 // ---------------- Store ---------------------------------------------------------
@@ -170,6 +170,13 @@ export const useAppStore = create<AppStoreState>()(
     (set, get) => ({
       ...getInitialState(),
       version: CURRENT_APP_STORE_VERSION,
+      migrate: (persistedState: any, version: number) => {
+        if (version < 4) {
+          persistedState.currentWallpaper = "/wallpapers/pantheon.jpg";
+          persistedState.wallpaperSource = "/wallpapers/pantheon.jpg";
+        }
+        return persistedState;
+      },
 
       // Misc toggles / settings
       debugMode: false,
@@ -934,6 +941,13 @@ export const useAppStore = create<AppStoreState>()(
     {
       name: "ryos:app-store",
       version: CURRENT_APP_STORE_VERSION,
+      migrate: (persistedState: any, version: number) => {
+        if (version < 4) {
+          persistedState.currentWallpaper = "/wallpapers/pantheon.jpg";
+          persistedState.wallpaperSource = "/wallpapers/pantheon.jpg";
+        }
+        return persistedState;
+      },
       partialize: (state): Partial<AppStoreState> => ({
         windowOrder: state.windowOrder,
         apps: state.apps,
