@@ -1,10 +1,7 @@
 import i18n from "@/lib/i18n";
+import type { AppId } from "@/config/appIds";
 
-export type AppId =
-  | "finder"
-  | "textedit"
-  | "paint"
-  | "control-panels";
+export type { AppId };
 
 /**
  * Get translated app name
@@ -84,11 +81,12 @@ export function getTranslatedHelpItems(appId: AppId): Array<{
   title: string;
   description: string;
 }> {
-  const helpKeys: Record<AppId, string[]> = {
+  const helpKeys: Partial<Record<AppId, string[]>> = {
     finder: ["browseNavigate", "fileManagement", "viewSort", "quickAccess", "storageInfo", "trash"],
     textedit: ["richEditing", "formatting", "listsTasks", "fileManagement", "voiceDictation", "slashCommands"],
     paint: ["drawingTools", "colors", "undo", "saving", "patterns", "filters"],
     "control-panels": ["appearance", "sounds", "aiModel", "shaderEffects", "backupRestore", "system"],
+    browser: [],
   };
 
   const keys = helpKeys[appId] || [];

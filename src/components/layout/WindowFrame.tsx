@@ -392,10 +392,10 @@ export function WindowFrame({
     const needsTauriMenubar = isTauriApp && (currentTheme === "macosx" || currentTheme === "system7");
     const menuBarHeight = needsTauriMenubar
       ? 32
-      : currentTheme === "system7" ? 30 : currentTheme === "macosx" ? 25 : 0;
+      : currentTheme === "system7" ? 30 : (currentTheme === "macosx" || currentTheme === "meadow") ? 36 : 0;
     const taskbarHeight = isXpTheme ? 30 : 0;
     // Use scaled dock height for accurate constraints (0 if dock hiding is enabled)
-    const dockHeight = currentTheme === "macosx" && !dockHiding ? Math.round(56 * dockScale) : 0;
+    const dockHeight = (currentTheme === "macosx" || currentTheme === "meadow") && !dockHiding ? Math.round(56 * dockScale) : 0;
     const topInset = menuBarHeight;
     const bottomInset = taskbarHeight + dockHeight + safe;
     return {
@@ -842,7 +842,7 @@ export function WindowFrame({
           border: "3px solid rgba(255, 255, 255, 0.8)",
           backgroundColor: "rgba(255, 255, 255, 0.1)",
           boxShadow: "0 0 20px rgba(255, 255, 255, 0.3), inset 0 0 20px rgba(255, 255, 255, 0.1)",
-          borderRadius: currentTheme === "macosx" ? 12 : 4,
+          borderRadius: (currentTheme === "macosx" || currentTheme === "meadow") ? 16 : 4,
         }}
       />
     </motion.div>,
@@ -1196,8 +1196,8 @@ export function WindowFrame({
                 />
               </div>
             </div>
-          ) : currentTheme === "macosx" ? (
-            // Mac OS X theme title bar with traffic light buttons
+          ) : currentTheme === "macosx" || currentTheme === "meadow" ? (
+            // Mac OS X / Meadow theme title bar with traffic light buttons
             <div
               className={cn(
                 "title-bar flex items-center shrink-0 h-6 min-h-[1.25rem] mx-0 mb-0 px-[0.1rem] py-[0.1rem] select-none cursor-move user-select-none z-50 draggable-area",

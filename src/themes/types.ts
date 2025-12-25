@@ -1,4 +1,4 @@
-export type OsThemeId = "system7" | "macosx" | "xp" | "win98";
+export type OsThemeId = "system7" | "macosx" | "xp" | "win98" | "meadow";
 
 export interface OsTheme {
   id: OsThemeId;

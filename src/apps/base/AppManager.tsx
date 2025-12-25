@@ -12,6 +12,8 @@ import { extractCodeFromPath } from "@/utils/sharedUrl";
 import { toast } from "sonner";
 import { requestCloseWindow } from "@/utils/windowUtils";
 import { useThemeStore } from "@/stores/useThemeStore";
+import { useDesktopModeStore } from "@/stores/useDesktopModeStore";
+import { GlobeView } from "@/components/globe";
 
 interface AppManagerProps {
   apps: AnyApp[];
@@ -44,6 +46,9 @@ export function AppManager({ apps }: AppManagerProps) {
   // Get current theme to determine if we should show the desktop menubar
   const currentTheme = useThemeStore((state) => state.current);
   const isXpTheme = currentTheme === "xp" || currentTheme === "win98";
+  
+  // Get desktop mode (classic or globe)
+  const desktopMode = useDesktopModeStore((state) => state.mode);
   
   // For Mac/System7 themes, hide the desktop menubar when there's a foreground app
   // For XP/98, the menubar is actually a taskbar and should always show
@@ -414,13 +419,21 @@ export function AppManager({ apps }: AppManagerProps) {
         );
       })}
 
-      <Desktop
-        apps={apps}
-        toggleApp={(appId, initialData) => {
-          launchApp(appId, initialData);
-        }}
-        appStates={{ windowOrder: instanceOrder, apps: legacyAppStates }}
-      />
+      {desktopMode === 'globe' ? (
+        <GlobeView
+          onLaunchApp={(appId, initialData) => {
+            launchApp(appId as AppId, initialData);
+          }}
+        />
+      ) : (
+        <Desktop
+          apps={apps}
+          toggleApp={(appId, initialData) => {
+            launchApp(appId, initialData);
+          }}
+          appStates={{ windowOrder: instanceOrder, apps: legacyAppStates }}
+        />
+      )}
 
       {/* Expose View (Mission Control) - Backdrop and labels */}
       <ExposeView

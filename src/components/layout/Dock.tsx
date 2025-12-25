@@ -1885,15 +1885,17 @@ function MacDock() {
           }}
           style={{
             pointerEvents: isDockVisible ? "auto" : "none",
-            background: "rgba(248, 248, 248, 0.75)",
-            backgroundImage: "var(--os-pinstripe-menubar)",
-            border: "none",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.15)",
+            background: "var(--os-dock-bg, rgba(248, 248, 248, 0.75))",
+            backgroundImage: "var(--os-pinstripe-menubar, none)",
+            backdropFilter: "var(--os-dock-blur, none)",
+            WebkitBackdropFilter: "var(--os-dock-blur, none)",
+            border: "var(--os-dock-border, none)",
+            boxShadow: "var(--os-dock-shadow, 0 2px 8px rgba(0, 0, 0, 0.15))",
             height: scaledDockHeight,
             padding: scaledPadding,
             maxWidth: "min(92vw, 980px)",
             transformOrigin: "center bottom",
-            borderRadius: "0px",
+            borderRadius: "var(--os-dock-radius, 0px)",
             overflowX: isPhone ? "auto" : "visible",
             overflowY: "visible",
             WebkitOverflowScrolling: isPhone ? "touch" : undefined,
@@ -2338,6 +2340,6 @@ function MacDock() {
 
 export function Dock() {
   const currentTheme = useThemeStore((s) => s.current);
-  if (currentTheme !== "macosx") return null;
+  if (currentTheme !== "macosx" && currentTheme !== "meadow") return null;
   return <MacDock />;
 }

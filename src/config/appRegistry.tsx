@@ -1,5 +1,5 @@
 import { lazy, Suspense, ComponentType, useEffect } from "react";
-import { appIds } from "./appIds";
+import { AppId } from "./appIds";
 import type {
   AppProps,
   BaseApp,
@@ -8,7 +8,7 @@ import type {
 } from "@/apps/base/types";
 import { useAppStore } from "@/stores/useAppStore";
 
-export type AppId = (typeof appIds)[number];
+export type { AppId };
 
 export interface WindowSize {
   width: number;
@@ -113,6 +113,11 @@ const LazyPaintApp = createLazyComponent<PaintInitialData>(
   "paint"
 );
 
+const LazyBrowserApp = createLazyComponent<unknown>(
+  () => import("@/apps/browser").then(m => ({ default: m.BrowserApp })),
+  "browser"
+);
+
 // ============================================================================
 // APP METADATA (loaded eagerly - small)
 // ============================================================================
@@ -182,6 +187,25 @@ export const appRegistry = {
       maxSize: { width: 365, height: 600 },
     } as WindowConstraints,
   } as BaseApp<ControlPanelsInitialData> & { windowConfig: WindowConstraints },
+  ["browser"]: {
+    id: "browser",
+    name: "Browser",
+    icon: { type: "image", src: "/icons/default/internet.png" },
+    description: "Browse the web",
+    component: LazyBrowserApp,
+    helpItems: [] as Array<{ icon: string; title: string; description: string }>,
+    metadata: {
+      name: "Browser",
+      version: "1.0.0",
+      creator: { name: "watsdis", url: "" },
+      github: "",
+      icon: "/icons/default/internet.png",
+    },
+    windowConfig: {
+      defaultSize: { width: 900, height: 600 },
+      minSize: { width: 400, height: 300 },
+    } as WindowConstraints,
+  },
 } as const;
 
 // ============================================================================

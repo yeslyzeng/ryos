@@ -1283,24 +1283,24 @@ export function MenuBar({ children, inWindowFrame = false }: MenuBarProps) {
   // In Tauri with titleBarStyle: overlay, add clearance for traffic lights (but not in fullscreen)
   // Don't add clearance on Windows platform (Chromium - no traffic lights), only on Mac (WebKit)
   const isWindowsPlatform = isTauriWindows();
-  const needsTrafficLightClearance = isTauriApp && !isFullscreen && !isWindowsPlatform && (currentTheme === "macosx" || currentTheme === "system7");
+  const needsTrafficLightClearance = isTauriApp && !isFullscreen && !isWindowsPlatform && (currentTheme === "macosx" || currentTheme === "system7" || currentTheme === "meadow");
   
   return (
     <div
       className={`fixed top-0 left-0 right-0 flex border-b-[length:var(--os-metrics-border-width)] border-os-menubar items-center font-os-ui ${exposeMode ? "z-[9997]" : "z-[10002]"}`}
       style={{
         background:
-          currentTheme === "macosx"
-            ? "rgba(248, 248, 248, 0.85)"
+          currentTheme === "macosx" || currentTheme === "meadow"
+            ? "var(--os-color-menubar-bg)"
             : "var(--os-color-menubar-bg)",
         backgroundImage:
           currentTheme === "macosx" ? "var(--os-pinstripe-menubar)" : undefined,
-        backdropFilter: currentTheme === "macosx" ? "blur(20px)" : undefined,
+        backdropFilter: currentTheme === "macosx" || currentTheme === "meadow" ? "blur(20px)" : undefined,
         WebkitBackdropFilter:
-          currentTheme === "macosx" ? "blur(20px)" : undefined,
+          currentTheme === "macosx" || currentTheme === "meadow" ? "blur(20px)" : undefined,
         boxShadow:
-          currentTheme === "macosx"
-            ? "0 2px 8px rgba(0, 0, 0, 0.15)"
+          currentTheme === "macosx" || currentTheme === "meadow"
+            ? "0 2px 8px rgba(0, 0, 0, 0.1)"
             : undefined,
         fontFamily: "var(--os-font-ui)",
         color: "var(--os-color-menubar-text)",

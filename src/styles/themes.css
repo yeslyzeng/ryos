@@ -1719,3 +1719,117 @@
   filter: blur(1px);
   pointer-events: none;
 }
+
+
+/* Meadow Theme - Arc Browser inspired with nature aesthetics */
+:root[data-os-theme="meadow"] {
+  --os-font-ui: "Inter", "SF Pro Display", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --os-font-mono: "JetBrains Mono", "SF Mono", Monaco, Menlo, monospace;
+  --os-color-window-bg: rgba(255, 255, 255, 0.85);
+  --os-color-menubar-bg: rgba(248, 250, 248, 0.8);
+  --os-color-menubar-border: rgba(139, 154, 123, 0.2);
+  --os-color-menubar-text: #3D4852;
+  --os-color-window-border: rgba(139, 154, 123, 0.3);
+  --os-color-window-border-inactive: rgba(139, 154, 123, 0.15);
+  --os-color-titlebar-border: rgba(139, 154, 123, 0.2);
+  --os-color-titlebar-border-inactive: rgba(139, 154, 123, 0.1);
+  --os-color-titlebar-active-bg: rgba(248, 250, 248, 0.95);
+  --os-color-titlebar-inactive-bg: rgba(248, 250, 248, 0.7);
+  --os-color-titlebar-text: #3D4852;
+  --os-color-titlebar-text-inactive: #8B9A7B;
+  --os-color-button-face: rgba(255, 255, 255, 0.9);
+  --os-color-button-highlight: rgba(255, 255, 255, 1);
+  --os-color-button-shadow: rgba(139, 154, 123, 0.3);
+  --os-color-button-active-face: rgba(139, 154, 123, 0.2);
+  --os-color-traffic-light-close: #E8B4A0;
+  --os-color-traffic-light-minimize: #F0D9A0;
+  --os-color-traffic-light-maximize: #8B9A7B;
+  --os-color-selection-bg: rgba(139, 154, 123, 0.9);
+  --os-color-selection-text: #ffffff;
+  --os-color-selection-glow: rgba(139, 154, 123, 0.5);
+  --os-color-text-primary: #3D4852;
+  --os-color-text-secondary: #6B7B8A;
+  --os-color-text-disabled: #A0AEC0;
+  --os-metrics-border-width: 1px;
+  --os-metrics-titlebar-border-width: 1px;
+  --os-metrics-radius: 1rem;
+  --os-metrics-titlebar-height: 2.5rem;
+  --os-metrics-menubar-height: 36px;
+  --os-window-shadow: 0 20px 60px rgba(61, 72, 82, 0.15), 0 8px 25px rgba(61, 72, 82, 0.1);
+  
+  /* Glassmorphism effects */
+  --os-glass-blur: 20px;
+  --os-glass-bg: rgba(255, 255, 255, 0.7);
+  --os-glass-border: rgba(255, 255, 255, 0.3);
+}
+
+/* Meadow theme glassmorphism for windows */
+:root[data-os-theme="meadow"] .window {
+  backdrop-filter: blur(var(--os-glass-blur));
+  -webkit-backdrop-filter: blur(var(--os-glass-blur));
+  background: var(--os-glass-bg) !important;
+  border: 1px solid var(--os-glass-border) !important;
+}
+
+/* Meadow theme title bar styling */
+:root[data-os-theme="meadow"] .title-bar,
+:root[data-os-theme="meadow"] [class*="titlebar"] {
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background: rgba(248, 250, 248, 0.9) !important;
+  border-bottom: 1px solid rgba(139, 154, 123, 0.15);
+}
+
+/* Meadow theme menubar styling */
+:root[data-os-theme="meadow"] .menubar,
+:root[data-os-theme="meadow"] [class*="menu-bar"] {
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  background: rgba(248, 250, 248, 0.85) !important;
+}
+
+/* Meadow theme button styling - pill shaped */
+:root[data-os-theme="meadow"] button:not(.traffic-light):not([class*="close"]):not([class*="minimize"]):not([class*="maximize"]) {
+  border-radius: 9999px !important;
+  transition: all 0.2s ease;
+}
+
+:root[data-os-theme="meadow"] button:hover:not(.traffic-light):not([class*="close"]):not([class*="minimize"]):not([class*="maximize"]) {
+  background: rgba(139, 154, 123, 0.15) !important;
+}
+
+/* Meadow dock styling */
+:root[data-os-theme="meadow"] {
+  --os-dock-bg: rgba(255, 255, 255, 0.6);
+  --os-dock-blur: blur(30px);
+  --os-dock-border: 1px solid rgba(255, 255, 255, 0.4);
+  --os-dock-shadow: 0 8px 32px rgba(61, 72, 82, 0.12), 0 2px 8px rgba(61, 72, 82, 0.08);
+  --os-dock-radius: 1.25rem;
+}
+
+/* Inactive selection palette for background windows (Meadow) */
+:root[data-os-theme="meadow"] .window:not(.is-foreground) {
+  --os-color-selection-bg: rgba(139, 154, 123, 0.3);
+  --os-color-selection-text: #3D4852;
+  opacity: 0.95;
+}
+
+/* Meadow scrollbar styling */
+:root[data-os-theme="meadow"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+:root[data-os-theme="meadow"] ::-webkit-scrollbar-track {
+  background: rgba(139, 154, 123, 0.1);
+  border-radius: 4px;
+}
+
+:root[data-os-theme="meadow"] ::-webkit-scrollbar-thumb {
+  background: rgba(139, 154, 123, 0.3);
+  border-radius: 4px;
+}
+
+:root[data-os-theme="meadow"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(139, 154, 123, 0.5);
+}

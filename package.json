@@ -6,8 +6,6 @@
   "scripts": {
     "dev": "vite --port ${PORT:-5173}",
     "dev:vercel": "vercel dev",
-    
-    
     "build": "tsc -b && vite build",
     "build:tauri": "bun run scripts/build-tauri.ts",
     "lint": "eslint .",
@@ -95,6 +93,7 @@
     "qrcode.react": "^4.2.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-globe.gl": "^2.37.0",
     "react-i18next": "^16.3.5",
     "react-player": "^2.16.0",
     "shiki": "^3.6.0",

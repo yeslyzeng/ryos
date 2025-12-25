@@ -3,6 +3,7 @@ export const appIds = [
   "textedit",
   "paint",
   "control-panels",
+  "browser",
 ] as const;
 
 export type AppId = (typeof appIds)[number];

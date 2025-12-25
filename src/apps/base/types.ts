@@ -19,12 +19,10 @@ export interface AppProps<TInitialData = unknown> {
   menuBar?: React.ReactNode;
 }
 
+import type { AppId } from "@/config/appIds";
+
 export interface BaseApp<TInitialData = unknown> {
-  id:
-    | "textedit"
-    | "control-panels"
-    | "finder"
-    | "paint";
+  id: AppId;
   name: string;
   icon: string | { type: "image"; src: string };
   description: string;
